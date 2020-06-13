@@ -1,0 +1,7 @@
+dependencies:
+- host: github.com
+  owner: ps-jx
+  repo: proof-of-tls
+  url: https://github.com/ps-jx/proof-of-tls.git
+  version: ""
+  versionURL: ""
