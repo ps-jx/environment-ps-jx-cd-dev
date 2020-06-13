@@ -1,35 +1,93 @@
+autoUpdate:
+  enabled: false
+  schedule: ""
+bootConfigURL: https://github.com/jenkins-x/jenkins-x-boot-config
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
-  environmentGitPublic: false
-  project: ""
+  clusterName: ps-jx-cd
+  devEnvApprovers:
+  - mogronalol
+  - ps-jx-pipeline-bot
+  environmentGitOwner: ps-jx
+  gitKind: github
+  gitName: github
+  gitServer: https://github.com
+  namespace: jx
+  project: jx-pluralsight-custom-domain
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  vaultName: ps-jx-cd
+  vaultSAName: ps-jx-cd-vt
+  zone: us-central1-a
 environments:
-- key: dev
-- key: staging
-- key: production
+- ingress:
+    cloud_dns_secret_name: external-dns-gcp-sa
+    domain: ps-jx.org
+    externalDNS: true
+    namespaceSubDomain: -jx.
+    tls:
+      email: certifiable@ps-jx.org
+      enabled: true
+      production: true
+  key: dev
+  repository: environment-ps-jx-cd-dev
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  repository: environment-ps-jx-cd-staging
+- ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  repository: environment-ps-jx-cd-production
+gitops: true
 ingress:
-  domain: ""
-  externalDNS: false
+  cloud_dns_secret_name: external-dns-gcp-sa
+  domain: ps-jx.org
+  externalDNS: true
+  namespaceSubDomain: -jx.
   tls:
-    email: ""
-    enabled: false
-    production: false
+    email: certifiable@ps-jx.org
+    enabled: true
+    production: true
 kaniko: true
-secretStorage: local
+repository: nexus
+secretStorage: vault
 storage:
+  backup:
+    enabled: true
+    url: gs://backup-ps-jx-cd-69641c40e232
   logs:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://logs-ps-jx-cd-69641c40e232
   reports:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://reports-ps-jx-cd-69641c40e232
   repository:
-    enabled: false
-    url: ""
+    enabled: true
+    url: gs://repository-ps-jx-cd-69641c40e232
+vault:
+  bucket: vault-ps-jx-cd-69641c40e232
+  key: crypto-key-ps-jx-cd-69641c40e232
+  keyring: keyring-ps-jx-cd-69641c40e232
+  name: ps-jx-cd
+  serviceAccount: ps-jx-cd-vt
+velero:
+  namespace: velero
+  schedule: 0 * * * *
+  serviceAccount: ps-jx-cd-vo
+  ttl: 720h0m0s
 versionStream:
-  ref: "master"
+  ref: v1.0.495
   url: https://github.com/jenkins-x/jenkins-x-versions.git
-webhook: lighthouse
+webhook: prow

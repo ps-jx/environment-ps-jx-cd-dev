@@ -1,0 +1,10 @@
+adminUser:
+  password: vault:ps-jx-cd/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: psjxpipelinebot@gmail.com
+  token: vault:ps-jx-cd/pipelineUser:token
+  username: ps-jx-pipeline-bot
+prow:
+  hmacToken: vault:ps-jx-cd/prow:hmacToken
