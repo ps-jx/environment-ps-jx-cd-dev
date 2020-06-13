@@ -31,13 +31,13 @@ environments:
   key: dev
   repository: environment-ps-jx-cd-dev
 - ingress:
-    domain: ""
-    externalDNS: false
-    namespaceSubDomain: ""
+    domain: ps-jx.org
+    externalDNS: true
+    namespaceSubDomain: -staging.
     tls:
-      email: ""
-      enabled: false
-      production: false
+      email: certifiable@ps-jx.org
+      enabled: true
+      production: true
   key: staging
   repository: environment-ps-jx-cd-staging
 - ingress:
