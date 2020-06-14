@@ -11,3 +11,9 @@ dependencies:
   url: https://github.com/ps-jx/test-domain.git
   version: ""
   versionURL: ""
+- host: github.com
+  owner: ps-jx
+  repo: verify-tls
+  url: https://github.com/ps-jx/verify-tls.git
+  version: ""
+  versionURL: ""

@@ -1,0 +1,21 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: ps-jx
+    provider: github
+    repository: verify-tls
+  name: ps-jx-verify-tls
+spec:
+  description: Imported application for ps-jx/verify-tls
+  httpCloneURL: https://github.com/ps-jx/verify-tls.git
+  org: ps-jx
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: verify-tls
+  scheduler:
+    kind: ""
+    name: ""
+  url: https://github.com/ps-jx/verify-tls.git
